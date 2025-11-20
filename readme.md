@@ -1,4 +1,17 @@
-# Welcome to the new nnU-Net!
+
+# Welcome to the new nnU-Net!(Testing)
+
+> 本研究在 nnUNetv2 框架下使用 ISIC 2018 皮膚病變醫療影像資料集進行分割實驗。透過該資料集所提供的大規模皮膚病灶標註影像，我們系統性評估 nnUNetv2 在實際臨床場景中的泛化能力與模型穩定性，並確認其於皮膚病變自動分割任務中的效能表現。
+>
+> 本研究では、nnUNetv2 フレームワークを用いて、ISIC 2018 皮膚病変医用画像データセットを対象としたセグメンテーション実験を実施した。豊富なアノテーション付き皮膚病変画像を活用し、nnUNetv2 の臨床応用における汎化性能と安定性を体系的に評価し、皮膚病変自動セグメンテーションにおける有効性を確認した。
+>
+> In this study, segmentation experiments were conducted using the ISIC 2018 skin lesion medical imaging dataset within the nnUNetv2 framework. Leveraging the dataset’s large collection of annotated dermatological images, we systematically evaluated the generalization capability and stability of nnUNetv2 in realistic clinical scenarios, confirming its effectiveness in automated skin lesion segmentation tasks.
+>
+> Dans cette étude, nous avons réalisé des expériences de segmentation à l’aide du jeu de données médicales ISIC 2018 sur les lésions cutanées au sein du cadre nnUNetv2. En exploitant un large ensemble d’images dermatologiques annotées, nous avons évalué de manière systématique la capacité de généralisation et la stabilité de nnUNetv2 dans des contextes cliniques réels, confirmant ainsi son efficacité pour la segmentation automatique des lésions cutanées.
+>
+> In dieser Studie wurden Segmentierungsexperimente mit dem medizinischen ISIC-2018-Datensatz für Hautläsionen innerhalb des nnUNetv2-Frameworks durchgeführt. Durch die Nutzung des umfangreichen, annotierten dermatologischen Bildmaterials wurde die Generalisierungsfähigkeit und Stabilität von nnUNetv2 in realistischen klinischen Szenarien systematisch bewertet und seine Effektivität bei der automatischen Segmentierung von Hautläsionen bestätigt.
+>
+
 
 Click [here](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1) if you were looking for the old one instead.
 
