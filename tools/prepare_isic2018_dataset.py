@@ -33,9 +33,29 @@ def _match_pairs(image_paths: List[Path], mask_dir: Path, suffix: str) -> List[T
 
 
 def _binarize_and_save_mask(src: Path, dst: Path) -> None:
+    """
+    將 mask 二值化為 [0, 1]，確保符合 nnU-Net 要求。
+    處理可能的 255 值或其他非標準標籤。
+    """
     arr = np.array(Image.open(src))
+    
+    # 如果是多通道，只取第一個通道
+    if arr.ndim == 3:
+        arr = arr[:, :, 0]
+    
+    # 將所有非零值轉為 1，確保結果只有 [0, 1]
+    # 這會處理 255、128 等任何非零值
     bin_arr = (arr > 0).astype(np.uint8)
-    Image.fromarray(bin_arr).save(dst)
+    
+    # 驗證結果只包含 [0, 1]
+    unique_vals = np.unique(bin_arr)
+    if not np.array_equal(unique_vals, [0]) and not np.array_equal(unique_vals, [0, 1]):
+        raise ValueError(
+            f"二值化後標籤包含意外數值: {unique_vals}。"
+            f"檔案: {src}"
+        )
+    
+    Image.fromarray(bin_arr, mode='L').save(dst)
 
 
 def _save_rgb_channels(src: Path, dst_dir: Path, case_id: str, file_suffix: str) -> str:

@@ -156,6 +156,15 @@ nnUNetv2_predict ^
 - **GPU 記憶體不足**：改用 `nnUNetv2_train 201 2d 0 ...` 或調整 `plans` 內之 `patch_size`、`batch_size`。
 - **預處理緩慢**：新增 `-np <num_workers>` 控制 CPU，或以 SSD 存放 `%nnUNet_preprocessed%` 提升 I/O。
 - **預測輸出為 `.nii.gz`**：可使用 `nnunetv2/imageio/` 內提供的工具轉 PNG，或自寫腳本。
+- **訓練 Loss 為 NaN (Not a Number)**：
+  - **檢查標籤數值**：執行 `python tools/check_labels.py` 確認標籤只包含 `[0, 1]`。若發現 `255` 或其他異常數值，重新執行 `tools/prepare_isic2018_dataset.py` 轉換數據集。
+  - **降低資料增強 worker 數**：設定 `$env:nnUNet_n_proc_DA = "0"` 和 `$env:nnUNet_n_proc_DA_val = "0"` 減少 CPU 記憶體使用。
+  - **檢查硬碟速度**：確保 `nnUNet_preprocessed` 位於 SSD 上，HDD 會導致訓練極慢且可能出現數據讀取錯誤。
+  - **降低 batch size**：若仍出現 NaN，可建立自訂 trainer 降低 `batch_size`（見 `nnunetv2/training/nnUNetTrainer/`）。
+- **訓練速度極慢（每個 Epoch > 1 小時）**：
+  - 確認數據位於 SSD 而非 HDD。
+  - 減少資料增強 worker：`$env:nnUNet_n_proc_DA = "0"`。
+  - 檢查 CPU 使用率，必要時關閉其他程式。
 
 ---
 
